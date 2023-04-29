@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>CUES - Home</title>
+{% endblock head %}
+{% block body %}
+
+<style>
+    .img-cropped {
+        object-fit: cover;
+        object-position: center center;
+        width: 250px;
+        height: 250px;
+    }
+</style>
+
+<div>
+    <div class="container mt-10">
+        {% if products %}
+        <h2 class="text-xl mx-10 mb-4">Beverages offered by  <span class="text-2xl text-red-600 underline">{{seller}}</span></h2>
+        <div class="mx-6 bg-white py-5 px-8">
+            <div class="grid gri-cols-1 md:grid-cols-4">
+                {% for pro in products %}
+                <div>
+                    <a href="../buy/{{pro.slug}}">
+                        <img src="{{pro.image.url}}" class="img-cropped w-full" alt="{{pro.slug}}">
+                        <p class="text-xl mt-2">{{pro.title}}</p>
+                        <p class="text-sm">Rs. {{pro.price}}/-</p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <h2 class="text-center text-xl">No Product added by seller</h2>
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_vm3qwxws.json"  background="transparent"  speed="1" class="w-4/5 mx-auto md:w-1/2" loop autoplay></lottie-player>
+        {% endif %}
+            
+    </div>
+</div>
+
+{% endblock body %}

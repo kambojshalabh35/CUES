@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>CUES - Your Products</title>
+{% endblock head %}
+{% block body %}
+
+<style>
+    .img-cropped {
+        object-fit: cover;
+        object-position: center center;
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
+<div>
+
+    <div class="container my-5">
+        <div class="flex justify-between mx-10">
+            <div>
+                <h3 class="text-2xl mb-8">Your Products</h3>
+            </div>
+            <div>
+                <a href="{% url 'products:add-product' %}" class="py-2 px-4 bg-[#bdbdbd] hover:bg-[#a8a8a8] rounded-sm">Add a Product</a>
+            </div>
+        </div>
+        {% if products %}
+        <table class="table-fixed w-full text-center">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Sold or Not</th>
+                <th>Edit/Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for pro in products %}
+              <tr>
+                <td><img src="{{pro.image.url}}" class="mx-auto img-cropped my-2" alt="{{pro.slug}}"></td>
+                <td><a href="buy/{{pro.slug}}" class="hover:text-red-800 hover:underline">{{pro.title}}</a></td>
+                <td>{{pro.price}}</td>
+                <td>
+                    {% if pro.noofsales %}
+                    Sold
+                    {% else %}
+                    Not Sold
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="edit/{{pro.slug}}" class="mr-3 py-1 px-2 bg-blue-400 hover:bg-blue-300 rounded-sm">Edit</a>
+                    <a href="delete/{{pro.slug}}" class="py-1 px-2 bg-red-400 hover:bg-red-300 rounded-sm">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_dmw3t0vg.json"  background="transparent" speed="1" class="w-2/5 mx-auto" loop autoplay></lottie-player>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock body %}

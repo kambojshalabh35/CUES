@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>CUES - Become Seller</title>
+{% endblock head %}
+
+{% block body %}
+
+<div class="w-full text-center mt-12">
+    <div class="md:w-2/5 border-[1.5px] border-[#dddddd] mx-auto mt-3 py-5 px-8">
+        <h2 class="text-3xl font-thin mb-3">Start Selling your Products</h2>    
+        <form class="space-y-5" method="post">
+            {% csrf_token %}
+            <input type="text" name="shop_name" class="w-full mb-3 rounded-sm h-10" id="shop_ame" placeholder="Your Full Name"><br>
+            <input type="text" name="upi_id" class="w-full mb-5 rounded-sm h-10" id="upi_id" placeholder="UPI ID"><br>
+            <input type="text" name="contact_no" class="w-full mb-5 rounded-sm h-10" id="contact_no" placeholder="Contact Number"><br>
+            {% if error %}
+            <div>
+                <p class="text-red-600 text-center"><b>{{error}}</b></p>
+            </div>
+            {% endif %}
+            <p class="text-xs mb-5">By continuing, you agree to Our Conditions of Use and Privacy Notice.</p>
+            <button class="w-full py-2 bg-red-500 hover:bg-red-600 text-white rounded-sm">Start Selling<button>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}

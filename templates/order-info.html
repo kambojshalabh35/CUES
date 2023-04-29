@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% block head %}
+<title>CUES - Home</title>
+{% endblock head %}
+{% block body %}
+
+<div>
+    <div class="container">
+
+        <div class="grid md:grid-cols-2">
+            <div>
+                <img src="{{product.image.url}}" class="w-full" alt="{{product.slug}}">
+            </div>
+            <div class="px-5 py-5">
+                <div class="bg-white w-full py-5 px-5">
+                    <h2 class="text-2xl mb-1">{{orderinfo.title}}</h2>
+                    <p class="text-gray-600 mb-1">By: {{orderinfo.seller}}</p>
+                    <hr class="border-black mb-2">
+                    <p class="text-xl">Order Number: {{orderinfo.orderNumber}}</p>
+                    <div class="grid grid-cols-2 mt-6">
+                        <div class="px-3 border-black border-[1px] py-3">
+                            <h3 class="mb-2">User Details</h3>
+                            <p class="mb-3"><b>Name:</b> <br>{{customerinfo.first_name}} {{customerinfo.last_name}}</p>
+                            <p class="mb-3"><b>Email:</b> <br>{{customerinfo.email}}</p>
+                            <p class="mb-3"><b>Contact Number:</b> <br>{{orderinfo.contactNumber}}</p>
+                        </div>
+                        <div class="px-5">
+                            <div class="px-3 border-black border-[1px] py-3">
+                                <h3 class="mb-2">Order Details</h3>
+                                <p class="mb-3"><b>Product:</b> <br>{{orderinfo.title}}</p>
+                                <p class="mb-3"><b>Order ID:</b> <br>{{orderinfo.orderNumber}}</p>
+                                <p class="mb-3"><b>Price:</b> <br>{{orderinfo.price}}</p>
+                                <p class="mb-3"><b>Order Time:</b> <br>{{ orderinfo.order_time }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- {{orderinfo.orderNumber}}<br>
+        {{orderinfo.contactNumber}}<br>
+        {{customerinfo.first_name}}<br>
+        {{customerinfo.last_name}}<br>
+        {{product.image.url}} -->
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/favicon.png' %}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Lottie Files -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <title>CUES Signup</title>
+	</head>
+
+<body>
+    <h1 class="text-center text-4xl mt-8">CUES</h1>
+
+    <div class="md:w-2/5 border-[1.5px] border-[#dddddd] mx-5 md:mx-auto mt-3 py-5 px-8">
+        <h2 class="text-3xl font-thin mb-3">Sign-Up</h2>    
+        <form class="space-y-5" method="post">
+            {% csrf_token %}
+            <input type="text" name="first_name" class="w-full mb-3 rounded-sm h-10" id="f_name" placeholder="First Name"><br>
+            <input type="text" name="last_name" class="w-full mb-5 rounded-sm h-10" id="l_name" placeholder="Last Name"><br>
+            <input type="text" name="username" class="w-full mb-5 rounded-sm h-10" id="username" placeholder="Username"><br>
+            <input type="email" name="email" class="w-full mb-5 rounded-sm h-10" id="email" placeholder="Email"><br>
+            <input type="password" name="password" class="w-full mb-5 rounded-sm h-10" id="password" placeholder="Password"><br>
+            <input type="password" name="confirm_password" class="w-full mb-5 rounded-sm h-10" id="c_password" placeholder="Confirm Password"><br>
+            {% if error %}
+            <div>
+                <p class="text-red-600 text-center"><b>{{error}}</b></p>
+            </div>
+            {% endif %}
+            <p class="text-xs mb-5">By continuing, you agree to Our Conditions of Use and Privacy Notice.</p>
+            <button class="w-full py-2 bg-red-500 hover:bg-red-600 text-white rounded-sm">Create account</button>
+        </form>
+    </div>
+    <div class="md:w-2/5 my-8 mx-5 md:mx-auto">
+        <hr class="border-[1] border-[#aaaaaa] w-full mt-1">
+        <p class="mx-auto bg-[#eaeded] w-3/4 md:w-2/4 text-center px-5 mt-[-11px]">Already have an account?</p>
+    </div>
+    <div class="md:w-2/5 mx-5 md:mx-auto bg-red-500 hover:bg-red-600 text-white rounded-sm text-center py-2">
+        <span class="w-full">
+            <a href="{% url 'adminAndSellers:login' %}">
+                Just Login
+            </a>
+        </span>
+    </div>
+
+    <footer class="bg-red-600 py-5 text-white text-center mt-14">
+        <p>Designed and Developed by: <a href="https://www.linkedin.com/in/kambojshalabh35/" class="hover:text-yellow-200">Shalabh Kamboj</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block head %}
+<title>CUES - Orders</title>
+{% endblock head %} 
+{% block body %}
+
+<div>
+  {% if orders %}
+  <div class="container mt-10 px-5">
+    <table class="table-auto w-full text-center">
+      <thead>
+        <tr class="gap-5">
+          <th>Order ID</th>
+          <th>Item</th>
+          <th>Contact Number</th>
+          <th>Price</th>
+          <th>Delivery status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for order in orders %}
+        <tr class="">
+            <td>
+              <a href="seller-order/info/{{order.orderNumber}}" class="text-red-500 underline hover:text-red-600 hover:no-underline">
+                {{order.orderNumber}}
+              </a>
+            </td>
+            <td>{{order.title}}</td>
+            <td>{{order.contactNumber}}</td>
+            <td>{{order.price}}</td>
+            {% if order.delivery_status == "delivered" %}
+            <td>Sold</td>
+            {% elif order.delivery_status == "cancelled" %}
+            <td>Cancelled</td>
+            {% else %}
+            <td>
+              <a href="/seller-orders/mark-as-delivered/{{order.orderNumber}}" class="text-red-600 hover:text-red-400">Mark as Sold</a> / 
+              <a href="/seller-orders/mark-as-cancelled/{{order.orderNumber}}" class="text-red-600 hover:text-red-400">Mark as Cancelled</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <h4 class="text-center text-2xl mt-8">No orders availible</h4>
+  <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_sjrrfsoj.json"  background="transparent"  speed="1" class="w-1/3 mx-auto" loop autoplay></lottie-player>
+  {% endif %}
+</div>
+
+{% endblock body %}

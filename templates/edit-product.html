@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>CUES - Your Products</title>
+{% endblock head %}
+{% block body %}
+
+<div>
+    <div class="container mt-10">
+        <h2 class="text-2xl mx-10 mb-4">Edit {{product.title}}</h2>
+
+        <div class="mx-6 bg-white py-5 px-8">
+            <div class="md:flex">
+                <div class="md:w-1/3 my-auto">
+                    <img src="{{product.image.url}}" width="350" height="350" alt="">
+                </div>
+                <div class="md:w-1/3 my-auto">
+                    <div>
+                        <h3 class="text-lg">Name:</h3>
+                        <p>{{product.title}}</p>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg">Description:</h3>
+                        <p>{{product.description}}</p>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-lg">Price:</h3>
+                        <p>{{product.price}}</p>
+                    </div>
+                </div>
+                <div class="md:w-1/3">
+                    <form class="space-y-5" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            <input type="text" name="title" class="w-full px-3 py-2 rounded text-black border-[1px] border-black placeholder:text-black" placeholder="Name of product" value="{{product.title}}" required>
+                        </div>
+                        <div>
+                            <textarea type="text" name="description" rows="4" class="w-full px-3 py-2 rounded text-black border-[1px] border-black placeholder:text-black" placeholder="Description of product" required>{{product.description}}</textarea>
+                        </div>
+                        <div>
+                            <input type="number" name="price" class="w-full px-3 py-2 rounded text-black border-[1px] border-black placeholder:text-black" placeholder="Price" value="{{product.price}}" required>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="changeimg" class="hover:cursor-pointer">
+                            <input type="hidden" name="changeimg" id="imgchangeinput">
+                            <span>Change Image</span>
+                        </div>
+                        <div class="hidden" id="imageinput">
+                            <input type="file" name="image" accept="image/*" class="w-full px-3 py-2 rounded text-black border-[1px] border-black placeholder:text-black" placeholder="Image">
+                        </div>
+                        {% if error %}
+                        <div>
+                            <p>{{error}}</p>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <button class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-sm">Update</button>
+                        </div>
+                    </form>
+                    <script>
+                        setInterval(function order() {
+                            let changeimg = document.getElementById("changeimg").checked
+                            document.getElementById("imgchangeinput").value=changeimg
+                            if(changeimg) {
+                                document.getElementById("imageinput").classList.remove("hidden")
+                            } else {
+                                if(document.getElementById("imageinput").classList.contains("hidden")) {} else {
+                                    document.getElementById("imageinput").classList.add("hidden")
+                                }
+                            }
+                        },100)
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

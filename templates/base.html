@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'img/favicon.png' %}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Lottie Files -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {% block head %}{% endblock head %}
+	</head>
+
+<body>
+    <nav class="bg-red-600 flex justify-between text-white">
+        <div class="ml-10 text-4xl pt-5 pb-3 ">
+            <a href="{% url 'products:home' %}"><strong>CUES</strong></a>
+        </div>
+        <div class="hidden md:block">
+            <ul class="flex mr-10 text-base">
+                <a href="{% url 'products:home' %}">
+                    <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                        Home
+                    </li>
+                </a>
+                {% if user.is_authenticated %}
+                {% if user.seller %}
+                <a href="{% url 'products:your-products' %}">
+                    <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                        Your Listed Items
+                    </li>
+                </a>
+                <a href="{% url 'products:seller-orders' %}">
+                    <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                        Orders
+                    </li>
+                </a>
+                {% else %}
+                    <a href="{% url 'adminAndSellers:become-seller' %}">
+                        <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                            Sell your items
+                        </li>
+                    </a>
+                {% endif %}
+                    <a href="{% url 'products:my-orders' %}">
+                        <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                            My Orders
+                        </li>
+                    </a>
+                    <a href="{% url 'adminAndSellers:logout' %}">
+                        <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                            Logout
+                        </li>
+                    </a>
+                {% else %}
+                    <a href="{% url 'adminAndSellers:login' %}">
+                        <li class="cursor-pointer rounded-b-lg px-4 mx-2 py-4 hover:bg-red-400 hover:underline">
+                            Login
+                        </li>
+                    </a>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="mr-10 md:hidden py-5" onclick='()=>{}'>
+            <img height="30" width="30" src="{% static 'img/menu.png' %}" alt="hamburger">
+        </div>
+    </nav>
+
+    <div class="min-h-[calc(100vh-232px)]">
+        {% block body %}{% endblock body %}
+    </div>
+
+    <footer class="bg-red-600 py-5 text-white text-center mt-14">
+        <p>Designed and Developed by: <a href="https://www.linkedin.com/in/kambojshalabh35/" class="hover:text-yellow-200">Shalabh Kamboj</a></p>
+    </footer>
+</body>
+</html>

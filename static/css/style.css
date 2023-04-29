@@ -1,0 +1,61 @@
+body {
+    background: #eaeded;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Bruno Ace SC', cursive;
+}
+
+#hero {
+    width: 100%;
+    height: 90vh;
+    background: url("../img/hero-img.jpg") top right no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 5% 50px;
+    z-index: -2;
+  }
+  #hero:before {
+    content: "";
+    background: rgba(167, 167, 167, 0.6);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+#hero h1 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #000000;
+  }
+  #hero p {
+    color: #000000;
+    margin: 15px 0 0 0;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  #hero img {
+    border-radius: 20px;
+  }
+
+  
+@media (max-width: 992px) {
+    #hero {
+      text-align: center;
+    }
+    #hero h1 {
+      font-size: 32px;
+      line-height: 36px;
+    }
+    #hero p {
+      margin-top: 10px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }

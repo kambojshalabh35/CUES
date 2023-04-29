@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block head %}
+<title>CUES - Home</title>
+{% endblock head %}
+{% block body %}
+
+<style>
+    /* width */
+    .customscroll::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    /* Track */
+    .customscroll::-webkit-scrollbar-track {
+        background: #fff !important;
+    }
+
+    /* Handle */
+    .customscroll::-webkit-scrollbar-thumb {
+        background: #888888 !important;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    .customscroll::-webkit-scrollbar-thumb:hover {
+        background: #555 !important;
+    }
+
+    .img-cropped {
+        object-fit: cover;
+        object-position: center center;
+        width: 250px;
+        height: 250px;
+    }
+    .col-flex-4 {
+        flex: 0 0 auto;
+        width: 250px;
+    }
+</style>
+
+<div>
+    <section id="hero" class="flex items-center">
+        <div class="container ">
+            <div class="md:flex justify-center">
+                <div class="w-full mb-10 md:my-auto text-center">
+                    <h1>CUES</h1>
+                    <p>CU's own Exchange System</p>
+                </div>
+                <!-- <div class="w-full md:w-1/2">
+                    <img src="{% static 'img/cu.png' %}" class="w-full" alt="hero">
+                </div> -->
+            </div>
+        </div>
+      </section>
+
+    <div id="Electronics" class="container">
+        {% if Electronics %}
+            <div class="bg-[#fff] my-8 mx-5 pt-7 pb-12">
+                <h2 class="pb-3 pl-7 text-2xl">Top Selling</h2>
+                <div class="mx-7 flex overflow-x-scroll customscroll">
+                    {% for pro in Electronics %}
+                    <div class="col-flex-4 mx-5 py-4">
+                        <a href="buy/{{pro.slug}}" class="w-full">
+                            <div class="w-full">
+                                <img src="{{pro.image.url}}" class="w-full img-cropped" alt="{{pro.slug}}">
+                                <p class="mt-3"><b>{{pro.title}}</b></p>
+                                <p class="mt-0 text-sm">Rs. {{pro.price}}/-</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="Clothing" class="container">
+        {% if Clothing %}
+            <div class="bg-[#fff] my-8 mx-5 pt-7 pb-12">
+                <h2 class="pb-3 pl-7 text-2xl">Featured</h2>
+                <div class="mx-7 flex overflow-x-scroll customscroll">
+                    {% for pro in Clothing %}
+                    <div class="col-flex-4 mx-5 py-4">
+                        <a href="buy/{{pro.slug}}" class="w-full">
+                            <div class="w-full">
+                                <img src="{{pro.image.url}}" class="w-full img-cropped" alt="{{pro.slug}}">
+                                <p class="mt-3"><b>{{pro.title}}</b></p>
+                                <p class="mt-0 text-sm">Rs. {{pro.price}}/-</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="Vehicle" class="container">
+        {% if Vehicle %}
+            <div class="bg-[#fff] my-8 mx-5 pt-7 pb-12">
+                <h2 class="pb-3 pl-7 text-2xl">You may like</h2>
+                <div class="mx-7 flex overflow-x-scroll customscroll">
+                    {% for pro in Vehicle %}
+                    <div class="col-flex-4 mx-5 py-4">
+                        <a href="buy/{{pro.slug}}" class="w-full">
+                            <div class="w-full">
+                                <img src="{{pro.image.url}}" class="w-full img-cropped" alt="{{pro.slug}}">
+                                <p class="mt-3"><b>{{pro.title}}</b></p>
+                                <p class="mt-0 text-sm">Rs. {{pro.price}}/-</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div id="Education" class="container">
+        {% if Education %}
+            <div class="bg-[#fff] my-8 mx-5 pt-7 pb-12">
+                <h2 class="pb-3 pl-7 text-2xl">You may like</h2>
+                <div class="mx-7 flex overflow-x-scroll customscroll">
+                    {% for pro in Education %}
+                    <div class="col-flex-4 mx-5 py-4">
+                        <a href="buy/{{pro.slug}}" class="w-full">
+                            <div class="w-full">
+                                <img src="{{pro.image.url}}" class="w-full img-cropped" alt="{{pro.slug}}">
+                                <p class="mt-3"><b>{{pro.title}}</b></p>
+                                <p class="mt-0 text-sm">Rs. {{pro.price}}/-</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock body %}

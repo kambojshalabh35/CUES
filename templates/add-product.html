@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>CUES - Add Product</title>
+{% endblock head %}
+
+{% block body %}
+
+<div class="w-full text-center mt-12">
+    <h2 class="text-3xl font-bold">Sell a Product</h2>
+    <div class="w-full flex justify-center mt-5">
+        <div class="w-4/5 md:w-2/5 bg-white py-8 rounded-sm text-white">
+            <form class="space-y-5" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    <input type="text" name="title" class="w-4/5 px-3 py-2 rounded mt-1 text-black border-[1px] border-black placeholder:text-black" placeholder="Title of product" required>
+                </div>
+                <div>
+                    <select name="tag" class="w-4/5 px-3 py-2 rounded mt-1 text-black border-[1px] border-black placeholder:text-black"  id="">
+                        <option value="">Select a product tag</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Vehicle">Vehicle</option>
+                        <option value="Education">Education</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea type="text" name="description" rows="4" class="w-4/5 px-3 py-2 rounded mt-1 text-black border-[1px] border-black placeholder:text-black" placeholder="Description of product" required></textarea>
+                </div>
+                <div>
+                    <input type="number" name="price" class="w-4/5 px-3 py-2 rounded mt-1 text-black border-[1px] border-black placeholder:text-black" placeholder="Price" required>
+                </div>
+                <div>
+                    <input type="file" name="image" accept="image/*" class="w-4/5 px-3 py-2 rounded mt-1 text-black border-[1px] border-black placeholder:text-black" placeholder="Image" required>
+                </div>
+                {% if error %}
+                <div>
+                    <p>{{error}}</p>
+                </div>
+                {% endif %}
+                <div>
+                    <button class="py-2 px-4 bg-red-500 hover:bg-red-600 rounded-sm">Add</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
